@@ -78,7 +78,23 @@
             border-width: 1px;
             border-color: $primaryColor;
             border-radius: 30px;
-            padding: 50px;
+            box-sizing: border-box;
+            padding: 80px 40px;
+
+            .input{
+                padding-bottom: 25px;
+                img{
+                    width: 34px;
+                }
+                input{
+                    width: 343px;
+                    font-size: 16px;
+                }
+                button{
+                    height: 64px;
+                    font-size: 18px;
+                }
+            }
         }
     }
 }
