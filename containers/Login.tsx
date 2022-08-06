@@ -1,8 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import { NextPage } from 'next';
 import React, { useState, MouseEvent } from 'react';
-import { executeRequest } from '../services/ApiServices';
+import { executeRequest } from '../services/apiServices';
 
-export const Login = () => {
+type LoginProps = {
+    setAccessToken(e: string) : void
+}
+
+export const Login:NextPage<LoginProps> = ({setAccessToken}) => {
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -19,9 +24,22 @@ export const Login = () => {
             const body = {login, password};
 
             const result = await executeRequest('login', 'POST', body);
-            console.log(result);
-        }catch(e){
+            if(!result || !result.data){
+                return setError('Ocoreu erro ao processar login. Tente Novamente!');
+            }
+
+            const {name, email, token} = result.data;
+
+            localStorage.setItem('accessToken', token);
+            localStorage.setItem('userName', name);
+            localStorage.setItem('useMail', email);
+            setAccessToken(token);
+        }catch(e : any){
             console.log(e);
+            if(e?.response?.data?.error){
+                return setError(e?.response?.data?.error);
+            }
+            setError('Ocoreu erro ao processar login. Tente Novamente!');
         }
     }
     
