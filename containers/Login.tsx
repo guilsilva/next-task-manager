@@ -10,10 +10,12 @@ export const Login = () => {
     const doLogin = (evento: MouseEvent) => {
         try{
             evento.preventDefault();
+            setError('');
             if(!login || !password){
                 return setError('Favor informar usuário e senha.');
             }
-            setError('Dados validados com sucesso!');
+
+            const body = {login, password};
         }catch(e){
             console.log(e);
         }
