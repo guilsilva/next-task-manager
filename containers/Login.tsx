@@ -1,14 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 
 export const Login = () => {
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const doLogin = () => {
+    const doLogin = (evento: MouseEvent) => {
         try{
-            alert('login: ' + login + ', senha: ' + password);
+            evento.preventDefault();
+            if(!login || !password){
+                return setError('Favor informar usuário e senha.');
+            }
+            setError('Dados validados com sucesso!');
         }catch(e){
             console.log(e);
         }
@@ -18,6 +23,7 @@ export const Login = () => {
         <div className="container-login">
             <img src="/logo.svg" alt="Logo Fiap" className="logo"/>
             <form>
+                <p className="error">{error}</p>
                 <div className="input">
                     <img src="/mail.svg" alt="Informe seu Login"/>
                     <input type="text" placeholder="login"
