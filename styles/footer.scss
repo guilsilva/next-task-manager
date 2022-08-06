@@ -1,0 +1,55 @@
+@import './configs.scss';
+
+.container-footer{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-top-width: 0px;
+    padding-bottom: 10px;
+
+    span{
+        display: none;
+    }
+
+    button{
+        display: flex;
+        flex-direction: row;
+        width: 96%;
+        height: 50px;
+        background-color: $lightGreyColor;
+        color: $primaryColor;
+        border-width: 1px;
+        border-style: solid;
+        border-color: $primaryColor;
+        border-radius: 12px;
+        font-size: 16px;
+        align-items: center;
+        padding-left: 15px;
+    }
+
+    img{
+        margin-right: 15px;
+    }
+
+    @media screen and(min-width: $mediaDesktop){
+        height: 60px;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: $lightGreyColor;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-bottom-width: 0px;
+        padding-bottom: 0px;
+        
+        button{
+            display: none;
+        }
+
+        span{
+            display: block;
+            color: $primaryColor;
+            font-size: 14px;
+        }
+    }
+}

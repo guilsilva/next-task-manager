@@ -2,12 +2,9 @@
 import { NextPage } from 'next';
 import React, { useState, MouseEvent } from 'react';
 import { executeRequest } from '../services/apiServices';
+import { AccessTokenProps } from '../types/AccessTokenProps';
 
-type LoginProps = {
-    setAccessToken(e: string) : void
-}
-
-export const Login:NextPage<LoginProps> = ({setAccessToken}) => {
+export const Login:NextPage<AccessTokenProps> = ({setAccessToken}) => {
     
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
