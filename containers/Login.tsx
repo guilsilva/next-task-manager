@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, MouseEvent } from 'react';
+import { executeRequest } from '../services/ApiServices';
 
 export const Login = () => {
     
@@ -7,7 +8,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const doLogin = (evento: MouseEvent) => {
+    const doLogin = async(evento: MouseEvent) => {
         try{
             evento.preventDefault();
             setError('');
@@ -16,6 +17,9 @@ export const Login = () => {
             }
 
             const body = {login, password};
+
+            const result = await executeRequest('login', 'POST', body);
+            console.log(result);
         }catch(e){
             console.log(e);
         }
